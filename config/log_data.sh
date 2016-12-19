@@ -31,7 +31,7 @@ write_mysql "tcpdump Top Talkers src/dst ip, port, pps" "$(sudo tcpdump -nn -r $
 write_mysql "tcpdump Top Talkers src/dst ip, port, bps" "$(sudo tcpdump -nn -r $filename tcp or udp and not ip6 | awk '{gsub(/\./," ",$3);gsub(/\./," ",$5);print $3" " $5" "$NF}' |awk '{print $1"."$2"."$3"."$4"  "$6"."$7"."$8"."$9"  "$5" "$NF}'|gawk '{a[$1" "$2" "$3]+=$NF; s+=$NF} END {PROCINFO["sorted_in"] = "@val_num_desc";for(sip_dip_p in a) printf( "%45s %5d %8.2f \n",sip_dip_p,a[sip_dip_p],a[sip_dip_p]/60) }'| awk '{printf("%17s %17s %8s %5d %8.2f\n",$1,$2,$3, $4, $5)}')";
 # delete old tcpdump files
 rm -f $filename
-write_mysql "Listening socket" "$(netstat -nltp)";
+write_mysql "Listening socket" "$(netstat -nltp |awk '{NR > 1 print($0)}')";
 write_mysql "CPU load" "$(mpstat | awk 'NR >3{gsub(",",".",$0);printf("%8.1f %%us %8.1f %%sys %8.1f %%idle %8.1f %%iowait \n", $3+$4,$5,$12,$6)}')";
 write_mysql "Disk Usage" "$(df --output=source,pcent,ipcent,target|grep -v -E '% /dev|% /proc|% /sys'|awk '{	p=int(substr($2,1,length($2)-1));	i=int(substr($3,1,length($3)-1)); if(i>p) p=i; if( p>=90) print "<span class=\"crit\">"$0"</span>"; else if(p>=80) print "<span class=\"warn\">"$0"</span>"; else print $0;}')";
 
