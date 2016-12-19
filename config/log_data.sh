@@ -16,14 +16,13 @@ function write_mysql()
 	mysql --user=$DB_USER --password=$DB_PASSWD $DB_NAME -B -N -e "INSERT INTO section (log_id,name,data) VALUES ($log_id,'$1','$2');";
 }
 
-
 cpu_s=$(nproc);
 LA_1=$(uptime | awk '{print substr($9,1,length($9)-1)}')
 LA_5=$(uptime | awk '{print substr($10,1,length($10)-1)}')
 LA_15=$(uptime | awk '{print  $11}')
 CPU_num=$(nproc)
 
-write_mysql "Load Average" "$LA_1 $LA_5 $LA_15";
+write_mysql "Load Average" "$LA_1  $LA_5  $LA_15 ""CPU(S):"" $CPU_num";
 write_mysql "Disk Load iostat" "$(iostat -x |awk 'NR > 6 {print $0}' |sed -e '$d'| awk 'BEGIN {printf("%10s %10s %10s %10s %10s %10s\n","device","r/s","w/s","rkB/s","wkB/s","%util")}{printf("%10s %10s %10s %10s %10s %10s \n",$1,$4,$5,$6,$7,$14)}')";
 write_mysql "Network Load" "$(cat /proc/net/dev |awk ' NR > 2 {print $0}'| awk ' BEGIN {printf("%15s %15s %15s %15s %15s \n","inteface","bytes_recived","packet_recived","bytes_transmit","packet_transmit")} {printf("%15s %15d %15d %15d %15d \n",$1,$2,$3,$10,$11)}')";
 write_mysql "tcpdump by proto,size" "$(sudo tcpdump -nn -r $filename | awk '{print $2 "\t" int($NF)}'|gawk '{a[$1]+=$2; s+=$2} END {PROCINFO["sorted_in"] = "@val_num_desc";for(proto in a) printf( "%15s %15d %d%% \n",proto,a[proto],100*a[proto]/s) }')"
