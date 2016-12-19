@@ -17,9 +17,9 @@ function write_mysql()
 }
 
 cpu_s=$(nproc);
-LA_1=$(uptime | awk '{print substr($9,1,length($9)-1)}')
-LA_5=$(uptime | awk '{print substr($10,1,length($10)-1)}')
-LA_15=$(uptime | awk '{print  $11}')
+LA_1=$(uptime | awk '{print substr($(NF-2),1,length($(NF-2))-1)}')
+LA_5=$(uptime | awk '{print substr($(NF-1),1,length($(NF-1))-1)}')
+LA_15=$(uptime | awk '{print substr($(NF),1,length($(NF))-1)}')
 CPU_num=$(nproc)
 
 write_mysql "Load Average" "$LA_1  $LA_5  $LA_15 ""CPU(S):"" $CPU_num";
