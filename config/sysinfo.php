@@ -63,7 +63,7 @@ while ($section = $res->fetch_assoc()) {
 	// заголовок секции	
 	echo "<h2>$name</h2>";
 	// строка данных
-	echo "<pre>$data</pre><hr>";
+	echo "<p><pre>$data</pre></p>";
 }
 ?>
 	</body>
