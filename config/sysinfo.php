@@ -16,7 +16,7 @@ echo "Client port=".$_SERVER['REMOTE_PORT']."<br>";
 echo "Nginx addr=".$_SERVER['REMOTE_ADDR']."<br>";
 echo "Nginx port=".$_SERVER['SERVER_PORT']."<br>";
 echo "HTTP_X_NGX_VERSION=".$_SERVER['HTTP_X_NGX_VERSION']."<br>";
-echo var_dump($_SERVER);
+//echo var_dump($_SERVER);
 // Соединяемся, выбираем базу данных
 	$mysqli = new mysqli('localhost', 'root', 'mysqlpass',"sysinfo");
 // Test for loggin worked
