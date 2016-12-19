@@ -18,9 +18,9 @@ function write_mysql()
 
 
 cpu_s=$(nproc);
-LA_1=$(uptime | awk '{print substr($8,1,length($8)-1)}')
-LA_5=$(uptime | awk '{print substr($9,1,length($9)-1)}')
-LA_15=$(uptime | awk '{print  $10}')
+LA_1=$(uptime | awk '{print substr($9,1,length($9)-1)}')
+LA_5=$(uptime | awk '{print substr($10,1,length($10)-1)}')
+LA_15=$(uptime | awk '{print  $11}')
 
 write_mysql "Load Average" "$LA_1  $LA_5  $LA_15";
 write_mysql "Disk Load iostat" "$(iostat -x |awk 'NR > 6 {print $0}' |sed -e '$d'| awk 'BEGIN {printf("%10s %10s %10s %10s %10s %10s\n","device","r/s","w/s","rkB/s","wkB/s","%util")}{printf("%10s %10s %10s %10s %10s %10s \n",$1,$4,$5,$6,$7,$14)}')";
