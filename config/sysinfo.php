@@ -25,7 +25,7 @@ echo "HTTP_X_NGX_VERSION=".$_SERVER['HTTP_X_NGX_VERSION']."<br>";
     $date_last=strtotime($rowl['date']);
     $date_current=time();
     $date_diff=$date_current-$date_last;
-    if ($date_diff>65){
+    if ($date_diff>120){
 			$header_class="fail";
     }else{
 			$header_class="ok";
