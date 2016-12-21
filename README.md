@@ -2,6 +2,8 @@
 
 ##Usage:
 
+(!) LANG = "en_US.UTF-8"
+
 git clone https://github.com/lostmap/sysinfo.git
 
 cd sysinfo
