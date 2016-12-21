@@ -29,7 +29,7 @@ sudo ln -s $PWD/config/index.php /var/www/html/index.php
 sudo service apache2 restart
 
 # install adminer
-sudo wget -O /var/www/html/adminer.php https://github.com/vrana/adminer/releases/download/v4.2.5/adminer-4.2.5-en.php 
+#sudo wget -O /var/www/html/adminer.php https://github.com/vrana/adminer/releases/download/v4.2.5/adminer-4.2.5-en.php 
 
 sudo apt-get -y install nginx
 
