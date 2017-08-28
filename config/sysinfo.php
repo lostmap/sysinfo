@@ -53,7 +53,7 @@ echo "HTTP_X_NGX_VERSION=".$_SERVER['HTTP_X_NGX_VERSION']."<br>";
 			echo "<a href='sysinfo?q=".($log_id-1)."'><button>Prev data</button></a>";
 	};	
 // show data log
-	echo "<h1 class='$header_class'>CurrentDatetime (UTC): $date  id: $log_id</h1>";
+	echo "<h1 class='$header_class'>Datetime (UTC): $date  id: $log_id</h1>";
 	$res = $mysqli->query("SELECT  name,data FROM section  WHERE log_id=$log_id ORDER BY id");
 while ($section = $res->fetch_assoc()) {
 	$name= $section['name'];
