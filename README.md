@@ -12,5 +12,3 @@ chmod +x install.sh
 
 ./install.sh
 
-It works!
-New Branch!
