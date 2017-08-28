@@ -11,3 +11,5 @@ cd sysinfo
 chmod +x install.sh
 
 ./install.sh
+
+It works!
