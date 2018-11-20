@@ -1,6 +1,6 @@
 # sysinfo
 
-##Usage:
+## Usage:
 
 (!) LANG = "en_US.UTF-8"
 
